@@ -33,25 +33,23 @@ module.exports = {
 
   dogwater: {
     connections: {
-      omoes: {
-        adapter: 'sails-mongo',
-        host: 'localhost',
-        port: 27017,
-        database: 'omoes'
-      }
+        omoes: {
+            adapter: 'sails-mysql',
+            host: 'localhost',
+            port: 3306,
+            user: 'root',
+            password: 'Carter$1Noah$1',
+            database: 'omoes'
+        }
     },
     adapters: {
+      'sails-mysql': require('sails-mysql'),
       'sails-mongo': require('sails-mongo')
     },
     models: require('path').resolve(__dirname, '..', 'models')
   },
 
-  jobs: {
-    address: 'mongodb://localhost:27017/omoes',
-    collection: 'jobs',
-    frequency: '5 minutes',
-    concurrency: 20
-  },
+
 
   apiPrefix: '/api/v2'
 };
