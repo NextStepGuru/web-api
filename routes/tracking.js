@@ -11,6 +11,6 @@ module.exports = (server, options) => [
   {
     method: 'POST',
     path: '/tracking/log',
-    config: Config.create
+    config: Config.log
   }
 ];

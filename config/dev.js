@@ -43,8 +43,7 @@ module.exports = {
         }
     },
     adapters: {
-      'sails-mysql': require('sails-mysql'),
-      'sails-mongo': require('sails-mongo')
+      'sails-mysql': require('sails-mysql')
     },
     models: require('path').resolve(__dirname, '..', 'models')
   },

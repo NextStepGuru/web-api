@@ -5,8 +5,8 @@ module.exports = {
 
     return reply({success:true});
   },
-  create: (request, reply) => {
+  log: (request, reply) => {
 
-    return reply({success:true});
+    return reply({success:true, logID: request.pre.tracking.id});
   }
 };

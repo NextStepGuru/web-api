@@ -6,7 +6,7 @@
   "scripts": {
     "test": "lab -a code -l -L -n eslint",
     "test-cov-html": "lab -a code -l -L -n eslint -r html -o coverage.html",
-    "start": "node server.js",
+    "start": "nodemon server.js dev",
     "deploy:staging": "shipit staging deploy",
     "deploy:production": "shipit production deploy"
   },
@@ -49,8 +49,7 @@
     "joi": "^9.0.4",
     "labbable": "^1.1.0",
     "lodash": "^4.15.0",
-    "sails-mongo": "^0.12.1",
-    "sails-mysql": "^0.11.5",
+    "sails-mysql": "^0.12.2",
     "waterline": "^0.12.2"
   }
 }

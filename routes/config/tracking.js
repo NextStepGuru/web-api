@@ -8,12 +8,12 @@ module.exports = {
     validate: Validations.find,
     handler: Handlers.find
   },
-  create: {
-    validate: Validations.create,
+  log: {
+    validate: Validations.log,
     pre: [
-      //{ method: 'tracking.create(payload)', assign: 'tracking' },
-      { method: 'utils.buildResourceLocation(path, pre.tracking.trackingID)', assign: 'location' }
+      { method: 'tracking.reformat(payload)', assign: 'tracking' },
+      { method: 'tracking.log(pre.tracking)', assign: 'tracking' }
     ],
-    handler: Handlers.create
+    handler: Handlers.log
   }
 };
