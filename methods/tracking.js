@@ -53,6 +53,8 @@ const reformat = function reformat(data, headers, next) {
     referrer : null
   };
 
+  console.log(headers)
+
   defaults.ip = headers['X-Real-IP']
 
   /* tracking */
