@@ -4,11 +4,10 @@ const Chalk = require('chalk');
 const Boom = require('boom');
 const _ = require('lodash');
 
-module.exports = (server, options) => [
+module.exports = (server, options, request) => [
   {
     name: 'tracking.reformat',
-    method: reformat,
-    options: options
+    method: reformat
   },
   {
     name: 'tracking.log',
@@ -19,11 +18,9 @@ module.exports = (server, options) => [
   }
 ];
 
-const log = function log(data, next) {
+const log = function log(data, request, next) {
 
-  this
-  .create(data)
-  .exec((err, tracking) => {
+  this.create(data).exec((err, tracking) => {
 
     if (err) {
       console.error(Chalk.bgRed.white(err));
@@ -50,7 +47,10 @@ const reformat = function reformat(data, next) {
     utmTerm : null,
     utmContent : null,
     gcid : null,
-    params : null
+    params : null,
+    useragent : null,
+    ip : null,
+    referrer : null
   };
 
   /* tracking */
@@ -76,9 +76,19 @@ const reformat = function reformat(data, next) {
   }
 
   /* location */
-  if (data.p.utm_source) {
-    defaults.utmSource = data.p.utm_source;
-    delete data.p.utm_source;
+  if (data.r) {
+    defaults.referrer = data.r;
+    if (defaults.referrer.length > 250) {
+      defaults.referrer = defaults.referrer.substring(0,250)
+    }
+    delete data.r;
+  }
+  if (data.u) {
+    defaults.useragent = data.u;
+    if (defaults.useragent.length > 250) {
+      defaults.useragent = defaults.useragent.substring(0,250)
+    }
+    delete data.u;
   }
   if (data.p.utm_campaign) {
     defaults.utmCampaign = data.p.utm_campaign;
@@ -96,9 +106,9 @@ const reformat = function reformat(data, next) {
     defaults.utmContent = data.p.utm_content;
     delete data.p.utm_content;
   }
-  if (data.p.gcid) {
-    defaults.gcid = data.p.gcid;
-    delete data.p.gcid;
+  if (data.p.gclid) {
+    defaults.gcid = data.p.gclid;
+    delete data.p.gclid;
   }
 
   /* location */

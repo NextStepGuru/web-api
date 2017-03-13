@@ -7,6 +7,8 @@ module.exports = {
   log: {
     payload: {
       p: Joi.object().required(),
+      u: Joi.string().required(),
+      r: Joi.string().required(),
       l: Joi.object().required(),
       e: Joi.object().required()
     }

@@ -2,7 +2,7 @@
 
 const Config = require('./config/tracking');
 
-module.exports = (server, options) => [
+module.exports = (server, options, request) => [
   {
     method: 'GET',
     path: '/tracking/log',

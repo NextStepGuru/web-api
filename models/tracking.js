@@ -52,6 +52,15 @@ module.exports = {
     gcid: {
       type: 'string'
     },
+    useragent: {
+      type: 'string'
+    },
+    ip: {
+      type: 'string'
+    },
+    referrer: {
+      type: 'string'
+    },
     params: {
       type: 'json'
     }
