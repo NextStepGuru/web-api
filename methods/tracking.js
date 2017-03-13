@@ -31,7 +31,7 @@ const log = function log(data, request, next) {
   });
 };
 
-const reformat = function reformat(data, next) {
+const reformat = function reformat(data, info, next) {
 
   let defaults = {
     emopID : null,
@@ -52,6 +52,10 @@ const reformat = function reformat(data, next) {
     ip : null,
     referrer : null
   };
+
+  if (info.remoteAddress) {
+    defaults.ip = info.remoteAddress
+  }
 
   /* tracking */
   if (data.e.ehid) {
@@ -89,6 +93,11 @@ const reformat = function reformat(data, next) {
       defaults.useragent = defaults.useragent.substring(0,250)
     }
     delete data.u;
+  }
+
+  if (data.p.utm_source) {
+    defaults.utmSource = data.p.utm_source;
+    delete data.p.utm_source;
   }
   if (data.p.utm_campaign) {
     defaults.utmCampaign = data.p.utm_campaign;
