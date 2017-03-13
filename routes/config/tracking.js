@@ -11,7 +11,7 @@ module.exports = {
   log: {
     validate: Validations.log,
     pre: [
-      { method: 'tracking.reformat(payload, info)', assign: 'tracking', failAction: 'log' },
+      { method: 'tracking.reformat(payload, headers)', assign: 'tracking', failAction: 'log' },
       { method: 'tracking.log(pre.tracking, request)', assign: 'tracking', failAction: 'log' }
     ],
     handler: Handlers.log

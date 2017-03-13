@@ -31,7 +31,7 @@ const log = function log(data, request, next) {
   });
 };
 
-const reformat = function reformat(data, info, next) {
+const reformat = function reformat(data, headers, next) {
 
   let defaults = {
     emopID : null,
@@ -53,9 +53,7 @@ const reformat = function reformat(data, info, next) {
     referrer : null
   };
 
-  if (info.remoteAddress) {
-    defaults.ip = info.remoteAddress
-  }
+  defaults.ip = headers['X-Real-IP']
 
   /* tracking */
   if (data.e.ehid) {
