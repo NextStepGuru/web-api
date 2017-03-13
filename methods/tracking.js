@@ -53,9 +53,7 @@ const reformat = function reformat(data, headers, next) {
     referrer : null
   };
 
-  console.log(headers)
-
-  defaults.ip = headers['X-Real-IP']
+  defaults.ip = headers['x-real-ip']
 
   /* tracking */
   if (data.e.ehid) {
