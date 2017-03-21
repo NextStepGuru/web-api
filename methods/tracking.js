@@ -133,5 +133,12 @@ const reformat = function reformat(data, headers, next) {
     defaults.params = data.p;
   }
 
+  for (var i = 0; i < data.j.length; i++) {
+    if (defaults.params === null) {
+      defaults.params = {}
+    }
+    defaults.params[data.j[i]['key']] = data.j[i]['value']
+  }
+
   return next(null, defaults);
 }
